@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import CLTypingLabel
+import Firebase
 
 class WelcomeViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: CLTypingLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let user = Auth.auth().currentUser
+        if(user != nil) {
+            self.performSegue(withIdentifier: K.welcomeToChatSegue, sender: self)
+        }
+        titleLabel.text = K.appName
        
     }
     
